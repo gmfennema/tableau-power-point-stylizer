@@ -5,7 +5,7 @@ import tempfile
 import os
 import io
 
-# Reuse logic from existing module
+
 from style_tableau_pptx import (
     Presentation,
     Inches,
@@ -23,10 +23,9 @@ import easyocr
 
 app = Flask(__name__)
 
-# Serve hero image via /hero.png (expects hero_image.png alongside this script)
 @app.get('/hero.png')
 def hero_png():
-    hero_path = Path(__file__).with_name('hero_image.png')
+    hero_path = Path(__file__).parent / 'assets' / 'hero_image.png'
     if not hero_path.exists():
         return ('Hero image not found', 404)
     return send_file(str(hero_path), mimetype='image/png')
